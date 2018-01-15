@@ -8,9 +8,9 @@ Example of data frame:
 
 test.txt
 
-GO  p-value\n
-Cell cycle  0.0004
-Notch1 pathway  0.00001
+GO  p-value<br>
+Cell cycle  0.0004<br>
+Notch1 pathway  0.00001<br>
 
 Run as: Rscript barplot4GO.R test.txt
 
