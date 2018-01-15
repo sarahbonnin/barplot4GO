@@ -14,7 +14,7 @@ package.check <- lapply(packages, FUN = function(x) {
     }
 })
 
-## 2. Read in input file
+## 2. Read in input file and format
 
 args <- commandArgs(trailingOnly=TRUE)
 
@@ -30,20 +30,22 @@ dat[,1] <- paste(toupper(substr(dat[,1], 1, 1)), tolower(substr(dat$GO, 2, nchar
 dat[,1] <- reorder(dat[,1], dat[,2])
 
 # -log10 transform the p-value
-
 dat[,2] <- -log10(dat[,2])
 
 col1 <- colnames(dat)[1]
 col2 <- colnames(dat)[2]
 
+## 3. Prepare plot
+
 p <- ggplot(dat, aes_string(x=col1, y=col2)) + 
 	geom_bar(stat="identity") + 
-	geom_hline(yintercept=-log10(0.05), col="red") + 
 	ylab(paste0("-log10(",col2,")")) + 
 	xlab(col1) + 
 	coord_flip() + 
 	theme(axis.text=element_text(size=20), axis.title=element_text(size=20,face="bold"), plot.title=element_text(size=24, face="bold")) +
 	ggtitle(gsub(".txt", "", gsub("_", " ", inputFile)))
+
+## 4. Save plot in pdf file
 
 pdf(gsub("txt","pdf", inputFile), width=12, height=7)
 print(p)
