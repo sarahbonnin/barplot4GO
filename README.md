@@ -8,7 +8,7 @@ Example of data frame:
 
 test.txt
 
-GO  p-value
+GO  p-value\n
 Cell cycle  0.0004
 Notch1 pathway  0.00001
 
